@@ -8,7 +8,7 @@ To better assess a candidate's development skills, we would like to provide the 
 
 ## Project Description
 
-Build an iOS/Android app that consumes a [json feed](http://warm-eyrie-4354.herokuapp.com/feed.json). Produce an application that displays a list that best displays the relevant data, customizing things as needed to make things fit. (See the [sample row](http://github.com/lschallenges/mobile-engineering/blob/master/sample_row.png) in the repo for a mockup, but please feel free to design the app in any way you want.)
+Build an iOS/Android app that consumes a [json feed](http://sheltered-bastion-2512.herokuapp.com/feed.json). Produce an application that displays a list that best displays the relevant data, customizing things as needed to make things fit. (See the [sample row](http://github.com/lschallenges/mobile-engineering/blob/master/sample_row.png) in the repo for a mockup, but please feel free to design the app in any way you want.)
 
 Here's what your mobile app must do:
 
