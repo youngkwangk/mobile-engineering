@@ -2,10 +2,12 @@ package com.youngkim.ls_challenge.app;
 
 import android.app.Activity;
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -16,11 +18,35 @@ import java.util.List;
 /**
  * Created by YoungKwang on 6/7/2014.
  */
-public class TheListAdapter extends ArrayAdapter<ListItem> {
+public class TheListAdapter extends BaseAdapter {
 
-    public TheListAdapter(Context context, int resource, List<ListItem> obj) {
-        super(context, resource, obj);
+    private LayoutInflater inflater;
+    private List<ListItem> items;
+    private Context context;
+
+    public TheListAdapter(Context context,List<ListItem> obj) {
+        super();
+        inflater = LayoutInflater.from(context);
+        this.context = context;
+        this.items = obj;
     }
+
+    @Override
+    public int getCount() {
+        return items.size();
+    }
+
+    @Override
+    public Object getItem(int position) {
+        return items.get(position);
+    }
+
+    @Override
+    public long getItemId(int position) {
+        return position;
+    }
+
+
     private class ViewHolder {
         ImageView smt_img;
         ImageView desc_img;
@@ -31,13 +57,11 @@ public class TheListAdapter extends ArrayAdapter<ListItem> {
 
     public View getView(int position, View convertView, ViewGroup parent) {
         ViewHolder holder = null;
-        ListItem rowItem = getItem(position);
+        ListItem rowItem = items.get(position);
 
-        LayoutInflater mInflater = (LayoutInflater) getContext()
-                .getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
 
         if (convertView == null) {
-            convertView = mInflater.inflate(R.layout.listitem, null);
+            convertView = inflater.inflate(R.layout.listitem, null);
             holder = new ViewHolder();
 
             holder.smt_img = (ImageView) convertView.findViewById(R.id.submitter_image);
@@ -56,6 +80,7 @@ public class TheListAdapter extends ArrayAdapter<ListItem> {
         holder.smt_name.setText(rowItem.getUser().getName());
         holder.attr.setText(rowItem.getAttr());
         holder.desc.setText(rowItem.getDesc());
+        Log.e("h", "h");
 
         return convertView;
     }
