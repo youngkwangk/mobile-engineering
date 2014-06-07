@@ -22,4 +22,16 @@ public class Avatar {
                 ", image='" + image + '\'' +
                 '}';
     }
+
+    public int getHeight() {
+        return height;
+    }
+
+    public int getWidth() {
+        return width;
+    }
+
+    public String getImage() {
+        return image;
+    }
 }

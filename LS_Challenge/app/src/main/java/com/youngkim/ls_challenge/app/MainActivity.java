@@ -12,7 +12,6 @@ import android.view.ViewGroup;
 import android.os.Build;
 
 
-
 public class MainActivity extends ActionBarActivity {
 
     @Override
@@ -21,7 +20,7 @@ public class MainActivity extends ActionBarActivity {
         setContentView(R.layout.activity_main);
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
-                    .add(R.id.container, new PlaceholderFragment())
+                    .add(R.id.container, new TheListFragment())
                     .commit();
         }
     }
@@ -49,11 +48,12 @@ public class MainActivity extends ActionBarActivity {
     /**
      * A placeholder fragment containing a simple view.
      */
-    public static class PlaceholderFragment extends Fragment {
+    public static class TheListFragment extends Fragment {
 
-        public PlaceholderFragment() {
+        @Override
+        public void onActivityCreated(Bundle savedInstanceState) {
+            super.onActivityCreated(savedInstanceState);
         }
-
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                 Bundle savedInstanceState) {

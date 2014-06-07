@@ -22,4 +22,16 @@ public class User {
                 ", avatar=" + avatar +
                 '}';
     }
+
+    public String getUser_name() {
+        return user_name;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public Avatar getAvatar() {
+        return avatar;
+    }
 }

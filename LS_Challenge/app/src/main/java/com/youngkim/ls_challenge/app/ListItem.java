@@ -28,4 +28,24 @@ public class ListItem {
                 ", user=" + user +
                 '}';
     }
+
+    public String getAttr() {
+        return attr;
+    }
+
+    public String getDesc() {
+        return desc;
+    }
+
+    public String getLink() {
+        return link;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public User getUser() {
+        return user;
+    }
 }
