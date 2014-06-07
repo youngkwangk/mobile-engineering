@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<pre-dex-items>
+
+    <item
+        dex="C:\Users\YoungKwang\Documents\GitHub\mobile-engineering\LS_Challenge\app\build\pre-dexed\debug\classes-ca5bd3ef6c4125219180b1d2c6c99c758bdbd20d.jar"
+        jar="C:\Users\YoungKwang\Documents\GitHub\mobile-engineering\LS_Challenge\build\exploded-aar\com.android.support\appcompat-v7\19.1.0\classes.jar"
+        jumboMode="false"
+        revision="19.0.3"
+        sha1="3499ceba05ca1f6037c6a2fad73df8f636224a28"/>
+    <item
+        dex="C:\Users\YoungKwang\Documents\GitHub\mobile-engineering\LS_Challenge\app\build\pre-dexed\debug\support-v4-19.1.0-726d3048e097220087435819ee23ecfe0a6ede18.jar"
+        jar="C:\Users\YoungKwang\AppData\Local\Android\android-studio\sdk\extras\android\m2repository\com\android\support\support-v4\19.1.0\support-v4-19.1.0.jar"
+        jumboMode="false"
+        revision="19.0.3"
+        sha1="85f201b380937e61a9dce6ca90ccf6872abbfb67"/>
+
+</pre-dex-items>
