@@ -9,6 +9,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.GridView;
 import android.widget.ListView;
 
 import com.android.volley.RequestQueue;
@@ -76,7 +77,7 @@ public class MainActivity extends ActionBarActivity {
     public static class TheListFragment extends Fragment {
 
         TheListAdapter la;
-        ListView lv;
+        GridView lv;
         public ArrayList<ListItem> list_items = new ArrayList<ListItem>();
 
         public TheListFragment() {
@@ -93,7 +94,7 @@ public class MainActivity extends ActionBarActivity {
                                  Bundle savedInstanceState) {
 
             View rootView = inflater.inflate(R.layout.fragment_main, container, false);
-            lv = (ListView) rootView.findViewById(R.id.the_list);
+            lv = (GridView) rootView.findViewById(R.id.the_list);
 
             return rootView;
         }

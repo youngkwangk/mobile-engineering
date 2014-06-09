@@ -4,12 +4,15 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity$PlaceholderFragment">
 
-    <ListView
+    <GridView
         android:id="@+id/the_list"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:dividerHeight="0px"
+        android:columnWidth="250sp"
+        android:numColumns="auto_fit"
         android:divider="@android:color/transparent"
+        android:stretchMode="columnWidth"
+        android:gravity="center"
         android:background="#EEEEEE"/>
 
 </RelativeLayout>
