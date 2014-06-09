@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.GridView;
 
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -93,37 +94,40 @@ public class MainActivity extends ActionBarActivity implements OnRefreshListener
     }
 
     public void getDataFromServer() {
-        requestQueue.add(
-                new JsonArrayRequest(THE_FEED,
-                        new Response.Listener<JSONArray>() {
-                            @Override
-                            public void onResponse(JSONArray response) {
-                                for (int x = 0; x < response.length(); x++) {
-                                    try {
-                                        JSONObject item = response.getJSONObject(x);
-                                        JSONObject user = item.getJSONObject("user");
-                                        JSONObject avatar = user.getJSONObject("avatar");
-                                        list_items.add(
-                                                new ListItem(item.getString("attrib"), item.getString("desc"), item.getString("href"), item.getString("src"),
-                                                        new User(user.getString("username"), user.getString("name"),
-                                                                new Avatar(avatar.getInt("height"), avatar.getInt("width"), avatar.getString("src")))
-                                                )
-                                        );
-                                        loadDataToList();
-                                    } catch (JSONException e) {
-                                        Log.e("JSONException", e.toString());
-                                    }
-                                }
-
-                            }
-                        }, new Response.ErrorListener() {
+        JsonArrayRequest req = new JsonArrayRequest(THE_FEED,
+                new Response.Listener<JSONArray>() {
                     @Override
-                    public void onErrorResponse(VolleyError volleyError) {
-                        Log.e("VolleyError", volleyError.toString());
+                    public void onResponse(JSONArray response) {
+                        for (int x = 0; x < response.length(); x++) {
+                            try {
+                                JSONObject item = response.getJSONObject(x);
+                                JSONObject user = item.getJSONObject("user");
+                                JSONObject avatar = user.getJSONObject("avatar");
+                                list_items.add(
+                                        new ListItem(item.getString("attrib"), item.getString("desc"), item.getString("href"), item.getString("src"),
+                                                new User(user.getString("username"), user.getString("name"),
+                                                        new Avatar(avatar.getInt("height"), avatar.getInt("width"), avatar.getString("src")))
+                                        )
+                                );
+                                loadDataToList();
+                            } catch (JSONException e) {
+                                Log.e("JSONException", e.toString());
+                            }
+                        }
+
                     }
-                }
-                )
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError volleyError) {
+                Log.e("VolleyError", volleyError.toString());
+            }
+        }
         );
+        req.setRetryPolicy(new DefaultRetryPolicy(
+                        30000,
+                        DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                        DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+        requestQueue.add(req);
 
     }
 
