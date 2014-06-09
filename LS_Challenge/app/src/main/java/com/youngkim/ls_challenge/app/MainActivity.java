@@ -5,12 +5,9 @@ import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.GridView;
-import android.widget.ListView;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -42,12 +39,8 @@ public class MainActivity extends ActionBarActivity implements OnRefreshListener
         setContentView(R.layout.activity_main);
 
         requestQueue = Volley.newRequestQueue(this);
-
-
-        // Now find the PullToRefreshLayout to setup
         mPullToRefreshLayout = (PullToRefreshLayout) findViewById(R.id.ptr_layout);
 
-        // Now setup the PullToRefreshLayout
         ActionBarPullToRefresh.from(this)
                 .allChildrenArePullable()
                 .listener(this).setup(mPullToRefreshLayout);
@@ -55,9 +48,10 @@ public class MainActivity extends ActionBarActivity implements OnRefreshListener
         if (savedInstanceState == null) {
             getDataFromServer();
         }
-
-        if (list_items == null || list_items.size() == 0)
-            getDataFromServer();
+        else {
+            if (list_items == null || list_items.size() == 0)
+                getDataFromServer();
+        }
         loadDataToList();
     }
 
@@ -66,34 +60,11 @@ public class MainActivity extends ActionBarActivity implements OnRefreshListener
         return view;
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-        if (id == R.id.action_settings) {
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
-    }
-
-    /**
-     * A placeholder fragment containing a simple view.
-     */
     public static class TheListFragment extends Fragment{
 
         TheListAdapter la;
         GridView lv;
         public ArrayList<ListItem> list_items = new ArrayList<ListItem>();
-
 
         public TheListFragment() {
         }
@@ -101,7 +72,6 @@ public class MainActivity extends ActionBarActivity implements OnRefreshListener
         @Override
         public void onActivityCreated(Bundle savedInstanceState) {
             super.onActivityCreated(savedInstanceState);
-
         }
 
         @Override
@@ -110,7 +80,6 @@ public class MainActivity extends ActionBarActivity implements OnRefreshListener
 
             View rootView = inflater.inflate(R.layout.fragment_main, container, false);
             lv = (GridView) rootView.findViewById(R.id.the_list);
-
 
             return rootView;
         }
@@ -121,8 +90,6 @@ public class MainActivity extends ActionBarActivity implements OnRefreshListener
             lv.setAdapter(la);
             la.notifyDataSetChanged();
         }
-
-
     }
 
     public void getDataFromServer() {
@@ -134,22 +101,15 @@ public class MainActivity extends ActionBarActivity implements OnRefreshListener
                                 for (int x = 0; x < response.length(); x++) {
                                     try {
                                         JSONObject item = response.getJSONObject(x);
-                                        Log.d("response", item.toString());
-
                                         JSONObject user = item.getJSONObject("user");
-                                        Log.d("user", user.toString());
-
                                         JSONObject avatar = user.getJSONObject("avatar");
-                                        Log.d("avatar", avatar.toString());
                                         list_items.add(
                                                 new ListItem(item.getString("attrib"), item.getString("desc"), item.getString("href"), item.getString("src"),
                                                         new User(user.getString("username"), user.getString("name"),
                                                                 new Avatar(avatar.getInt("height"), avatar.getInt("width"), avatar.getString("src")))
                                                 )
                                         );
-
                                         loadDataToList();
-
                                     } catch (JSONException e) {
                                         Log.e("JSONException", e.toString());
                                     }
@@ -175,6 +135,7 @@ public class MainActivity extends ActionBarActivity implements OnRefreshListener
 
     @Override
     public void onRefreshStarted(View view) {
+        list_items.clear();
         getDataFromServer();
     }
 }
