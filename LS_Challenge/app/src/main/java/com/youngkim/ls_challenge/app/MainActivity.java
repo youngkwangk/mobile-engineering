@@ -24,12 +24,17 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
+import uk.co.senab.actionbarpulltorefresh.library.ActionBarPullToRefresh;
+import uk.co.senab.actionbarpulltorefresh.library.PullToRefreshLayout;
+import uk.co.senab.actionbarpulltorefresh.library.listeners.OnRefreshListener;
 
-public class MainActivity extends ActionBarActivity {
+
+public class MainActivity extends ActionBarActivity implements OnRefreshListener{
 
     private final String THE_FEED = "http://sheltered-bastion-2512.herokuapp.com/feed.json";
     public ArrayList<ListItem> list_items = new ArrayList<ListItem>();
     private RequestQueue requestQueue;
+    private PullToRefreshLayout mPullToRefreshLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +42,15 @@ public class MainActivity extends ActionBarActivity {
         setContentView(R.layout.activity_main);
 
         requestQueue = Volley.newRequestQueue(this);
+
+
+        // Now find the PullToRefreshLayout to setup
+        mPullToRefreshLayout = (PullToRefreshLayout) findViewById(R.id.ptr_layout);
+
+        // Now setup the PullToRefreshLayout
+        ActionBarPullToRefresh.from(this)
+                .allChildrenArePullable()
+                .listener(this).setup(mPullToRefreshLayout);
 
         if (savedInstanceState == null) {
             getDataFromServer();
@@ -74,11 +88,12 @@ public class MainActivity extends ActionBarActivity {
     /**
      * A placeholder fragment containing a simple view.
      */
-    public static class TheListFragment extends Fragment {
+    public static class TheListFragment extends Fragment{
 
         TheListAdapter la;
         GridView lv;
         public ArrayList<ListItem> list_items = new ArrayList<ListItem>();
+
 
         public TheListFragment() {
         }
@@ -95,6 +110,7 @@ public class MainActivity extends ActionBarActivity {
 
             View rootView = inflater.inflate(R.layout.fragment_main, container, false);
             lv = (GridView) rootView.findViewById(R.id.the_list);
+
 
             return rootView;
         }
@@ -153,6 +169,12 @@ public class MainActivity extends ActionBarActivity {
 
     public void loadDataToList() {
         ((TheListFragment) getSupportFragmentManager().findFragmentById(R.id.list_fragment)).setList(list_items);
+        mPullToRefreshLayout.setRefreshComplete();
 
+    }
+
+    @Override
+    public void onRefreshStarted(View view) {
+        getDataFromServer();
     }
 }

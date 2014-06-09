@@ -1,6 +1,5 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/container"
+android:id="@+id/container"
 android:orientation="horizontal"
 android:layout_width="fill_parent"
 android:layout_height="fill_parent">
@@ -9,7 +8,6 @@ android:layout_height="fill_parent">
     android:name="com.youngkim.ls_challenge.app.MainActivity$TheListFragment"
     android:id="@+id/list_fragment"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:layout="@layout/fragment_main" />
+    android:layout_height="match_parent" />
 
 </LinearLayout>

@@ -14,6 +14,18 @@
         revision="19.0.3"
         sha1="cf9754bfa8484f88f26e45d28fe298daa544d4f0"/>
     <item
+        dex="C:\Users\YoungKwang\Documents\GitHub\mobile-engineering\LS_Challenge\app\build\pre-dexed\debug\classes-39c7df1ec29a8d871ad1c47e4be0fcc292b5a012.jar"
+        jar="C:\Users\YoungKwang\Documents\GitHub\mobile-engineering\LS_Challenge\build\exploded-aar\com.github.chrisbanes.actionbarpulltorefresh\library\0.9.9\classes.jar"
+        jumboMode="false"
+        revision="19.0.3"
+        sha1="06ca4ea902f14efb76284d918edb085df33cc365"/>
+    <item
+        dex="C:\Users\YoungKwang\Documents\GitHub\mobile-engineering\LS_Challenge\app\build\pre-dexed\debug\classes-c7ca6979d8ff6aca9d572a5829fb96280bcd59f3.jar"
+        jar="C:\Users\YoungKwang\Documents\GitHub\mobile-engineering\LS_Challenge\build\exploded-aar\com.github.castorflex.smoothprogressbar\library\0.4.0\classes.jar"
+        jumboMode="false"
+        revision="19.0.3"
+        sha1="6ca319f998430aa20c4dde97ba6df213d6cf3dd0"/>
+    <item
         dex="C:\Users\YoungKwang\Documents\GitHub\mobile-engineering\LS_Challenge\app\build\pre-dexed\debug\classes-ca5bd3ef6c4125219180b1d2c6c99c758bdbd20d.jar"
         jar="C:\Users\YoungKwang\Documents\GitHub\mobile-engineering\LS_Challenge\build\exploded-aar\com.android.support\appcompat-v7\19.1.0\classes.jar"
         jumboMode="false"

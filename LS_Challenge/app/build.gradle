@@ -25,4 +25,5 @@ dependencies {
     compile 'com.android.support:support-v4:19.1.0'
     compile 'com.mcxiaoke.volley:library-aar:1.0.+'
     compile 'com.koushikdutta.urlimageviewhelper:UrlImageViewHelper:1.0.2'
+    compile 'com.github.chrisbanes.actionbarpulltorefresh:library:+'
 }
