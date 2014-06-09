@@ -9,6 +9,8 @@
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:columnWidth="250sp"
+        android:paddingTop="5sp"
+        android:paddingBottom="5sp"
         android:numColumns="auto_fit"
         android:divider="@android:color/transparent"
         android:stretchMode="columnWidth"

@@ -75,7 +75,7 @@ public class TheListAdapter extends BaseAdapter {
             holder = (ViewHolder) convertView.getTag();
 
         UrlImageViewHelper.setUrlDrawable(holder.smt_img, rowItem.getUser().getAvatar().getImage());
-        UrlImageViewHelper.setUrlDrawable(holder.desc_img, rowItem.getImage());
+        UrlImageViewHelper.setUrlDrawable(holder.desc_img, rowItem.getImage(), R.drawable.placeholder);
 
         holder.smt_name.setText(rowItem.getUser().getName());
         holder.attr.setText(rowItem.getAttr());
