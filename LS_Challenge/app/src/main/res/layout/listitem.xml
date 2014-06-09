@@ -40,11 +40,10 @@
     </LinearLayout>
 
     <FrameLayout
+        android:id="@+id/information"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:clickable="true"
-        android:focusableInTouchMode="true"
-        android:focusable="true"
         android:foreground="@drawable/draw_on_top_selector">
 
         <ImageView

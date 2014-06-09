@@ -2,12 +2,15 @@ package com.youngkim.ls_challenge.app;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -53,11 +56,12 @@ public class TheListAdapter extends BaseAdapter {
         TextView smt_name;
         TextView attr;
         TextView desc;
+        FrameLayout info;
     }
 
     public View getView(int position, View convertView, ViewGroup parent) {
         ViewHolder holder = null;
-        ListItem rowItem = items.get(position);
+        final ListItem rowItem = items.get(position);
 
 
         if (convertView == null) {
@@ -69,6 +73,7 @@ public class TheListAdapter extends BaseAdapter {
             holder.attr = (TextView) convertView.findViewById(R.id.attr);
             holder.desc = (TextView) convertView.findViewById(R.id.desc);
             holder.desc_img = (ImageView) convertView.findViewById(R.id.info_image);
+            holder.info = (FrameLayout) convertView.findViewById(R.id.information);
 
             convertView.setTag(holder);
         } else
@@ -80,7 +85,15 @@ public class TheListAdapter extends BaseAdapter {
         holder.smt_name.setText(rowItem.getUser().getName());
         holder.attr.setText(rowItem.getAttr());
         holder.desc.setText(rowItem.getDesc());
-        Log.e("h", "h");
+
+        holder.info.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(Intent.ACTION_VIEW);
+                i.setData(Uri.parse(rowItem.getLink()));
+                context.startActivity(i);
+            }
+        });
 
         return convertView;
     }
